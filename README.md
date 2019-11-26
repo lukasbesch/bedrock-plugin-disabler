@@ -2,6 +2,7 @@
 [![Packagist](https://img.shields.io/packagist/vpre/lukasbesch/bedrock-plugin-disabler.svg?style=flat-square)](https://packagist.org/packages/lukasbesch/bedrock-plugin-disabler)
 [![Supported PHP Versions](https://img.shields.io/packagist/php-v/lukasbesch/bedrock-plugin-disabler.svg?style=flat-square)](https://github.com/lukasbesch/bedrock-plugin-disabler)
 [![GitHub Repository Size](https://img.shields.io/github/languages/code-size/lukasbesch/bedrock-plugin-disabler.svg?style=flat-square)](https://github.com/lukasbesch/bedrock-plugin-disabler)
+[![Build Status](https://img.shields.io/circleci/build/github/lukasbesch/bedrock-plugin-disabler?style=flat-square)](https://circleci.com/gh/lukasbesch/bedrock-plugin-disabler)
 [![Downloads](https://img.shields.io/packagist/dt/lukasbesch/bedrock-plugin-disabler.svg?style=flat-square)](https://packagist.org/packages/lukasbesch/bedrock-plugin-disabler)
 
 
