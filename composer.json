@@ -1,0 +1,20 @@
+{
+    "name": "lukasbesch/disable-plugins",
+    "description": "Disable certain plugins in non-production environments using PHP constants.",
+    "type": "wordpress-muplugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas Besch",
+            "email": "connect@lukasbesch.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "composer/installers": "^1.4"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5"
+    }
+}
