@@ -66,4 +66,4 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 }
 ```
 
-After that you can add your local configuration, including the database details.
+After that you can add the configuration for your local development server in a new file `local-config.php` next to your `wp-config.php`, including the database details. You don't push this file to your production server, it only exists locally.
