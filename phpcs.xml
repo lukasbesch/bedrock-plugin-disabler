@@ -3,8 +3,8 @@
   <description>Roots Coding Standards</description>
 
   <!-- Scan these files -->
-  <file>disable-plugins.php</file>
-  <file>disable-plugins-class.php</file>
+  <file>bedrock-plugin-disabler.php</file>
+  <file>src/</file>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>

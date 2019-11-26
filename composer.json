@@ -1,5 +1,5 @@
 {
-    "name": "lukasbesch/disable-plugins",
+    "name": "lukasbesch/bedrock-plugin-disabler",
     "description": "Disable certain plugins in non-production environments using PHP constants.",
     "type": "wordpress-muplugin",
     "license": "MIT",

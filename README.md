@@ -1,69 +1,39 @@
-# Disable Plugins
+# Bedrock Plugin Disabler
 
-This plugins allows you to define disabled plugins using PHP constants.
+Define an array of plugins that deactivate automatically in certain environments (e.g. caching plugins in development).
 
 Inspired by [this blog post](https://kamilgrzegorczyk.com/2018/05/02/how-to-disable-plugins-on-certain-environment/) by [Kamil Grzegorczyk](https://kamilgrzegorczyk.com/).
 Uses [a fork](https://gist.github.com/Rarst/4402927) of the [`DisablePlugins` class](https://gist.github.com/markjaquith/1044546) written by [Mark Jaquith](http://markjaquith.com/).
 
 ## Installation
 
-### Bedrock / Composer-based site
+This plugin is designed to work with [Bedrock](https://github.com/roots/bedrock) based sites, and will **not** work with a Standard WordPress installation.
 
-`composer require lukasbesch/disable-plugins`
+`composer require lukasbesch/bedrock-plugin-disabler`
 
-It will be installed as a `wordpress-muplugin` by default. This only works for sites using [Bedrock](https://github.com/roots/bedrock).
+It will be installed as a `wordpress-muplugin`.  
+If you try to activate it as a regular plugin, the plugin will deactivate itself with a notice.
 
-### Standard WordPress / Manual
+#### Manual Installation (not recommended)
 
-Download [the latest release](https://github.com/lukasbesch/disable-plugins/releases/latest) and place it in your `wp-content/mu-plugins` folder.
-
+Download [the latest release](https://github.com/lukasbesch/bedrock-plugin-disabler/releases/latest) and place it in your `web/app/mu-plugins` folder.
 
 ## Usage
-
-### Bedrock
 
 Place this in your `config/environments/development.php ` and add your plugins.
 
 ```php
-Config::define('DISABLED_PLUGINS', serialize([
+Config::define('DISABLED_PLUGINS', [
     'autoptimize/autoptimize.php',
     'updraftplus/updraftplus.php',
     'wp-super-cache/wp-cache.php',
     'w3-total-cache/w3-total-cache.php',
+]);
+```
+
+PHP 5.6+ can store arrays in constants, but you can also provide serialized data:
+
+```php
+Config::define('DISABLED_PLUGINS', serialize([
+    'autoptimize/autoptimize.php',
 ]));
-```
-
-### Standard WordPress
-
-Place this in your `wp-config.php` and add your plugins.
-
-```php
-if (!defined('DISABLED_PLUGINS') {
-    define('DISABLED_PLUGINS', serialize([
-        'autoptimize/autoptimize.php',
-        'updraftplus/updraftplus.php',
-        'wp-super-cache/wp-cache.php',
-        'w3-total-cache/w3-total-cache.php',
-    ]));
-}
-```
-
-**Only edit your local config and make sure you don't push that config to your production server!**
-
-There are several ways of doing this. I really recommend that you try [Bedrock](https://github.com/roots/bedrock), but
-if you don't, you might want to edit your wp-config.php like described in [this blog post by Mark Jaquith](https://markjaquith.wordpress.com/2011/06/24/wordpress-local-dev-tips/):
-
-```php
-# wp-config.php
-if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
-  include( dirname( __FILE__ ) . '/local-config.php' );
-  define( 'WP_LOCAL_DEV', true );
-} else {
-  define( 'DB_NAME',     'production_db'       );
-  define( 'DB_USER',     'production_user'     );
-  define( 'DB_PASSWORD', 'production_password' );
-  define( 'DB_HOST',     'production_db_host'  );
-}
-```
-
-After that you can add the configuration for your local development server in a new file `local-config.php` next to your `wp-config.php`, including the database details. You don't push this file to your production server, it only exists locally.

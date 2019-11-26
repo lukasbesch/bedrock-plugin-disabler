@@ -1,12 +1,15 @@
 <?php
+namespace Besch\PluginDisabler;
+
 /**
  * Plugin disabling engine class
  * Author: Mark Jaquith
  * Author URI: http://markjaquith.com/
  * Plugin URI: https://gist.github.com/markjaquith/1044546
  * Using fork: https://gist.github.com/Rarst/4402927
+ *
+ * @package Besch\PluginDisabler
  */
-
 class DisablePlugins
 {
     public static $instance;
@@ -30,8 +33,8 @@ class DisablePlugins
         /**
          * Add the filters
          */
-        add_filter('option_active_plugins', [$this, 'do_disabling']);
-        add_filter('site_option_active_sitewide_plugins', [$this, 'do_network_disabling']);
+        add_filter('option_active_plugins', [$this, 'doDisabling']);
+        add_filter('site_option_active_sitewide_plugins', [$this, 'doNetworkDisabling']);
 
         /**
          * Allow other plugins to access this instance
@@ -52,7 +55,7 @@ class DisablePlugins
      * @param array $plugins WP-provided list of plugin filenames
      * @return array The filtered array of plugin filenames
      */
-    public function do_disabling($plugins)
+    public function doDisabling($plugins)
     {
         if (count($this->disabled)) {
             foreach ((array)$this->disabled as $plugin) {
@@ -73,7 +76,7 @@ class DisablePlugins
      *
      * @return array
      */
-    public function do_network_disabling($plugins)
+    public function doNetworkDisabling($plugins)
     {
         if (count($this->disabled)) {
             foreach ((array)$this->disabled as $plugin) {
