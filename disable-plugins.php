@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name:  Disable plugins
-Plugin URI:   https://lukasbesch.com/
+Plugin URI:   https://github.com/lukasbesch/disable-plugins/
 Description:  Disable certain plugins in non-production environments using PHP constants.
 Version:      1.0.0
-Author:       Lukas Besch
+Author:       Lukas Besch, Kamil Grzegorczyk
 Author URI:   https://lukasbesch.com/
 License:      MIT License
 */
