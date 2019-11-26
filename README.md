@@ -15,7 +15,7 @@ It will be installed as a `wordpress-muplugin` by default. This only works for s
 
 ### Standard WordPress / Manual
 
-Download [the latest release](https://github.com/lukasbesch/disable-plugins/releases/latest) and place it in your `wp-content/plugins` folder.
+Download [the latest release](https://github.com/lukasbesch/disable-plugins/releases/latest) and place it in your `wp-content/mu-plugins` folder.
 
 
 ## Usage
@@ -47,3 +47,23 @@ if (!defined('DISABLED_PLUGINS') {
     ]));
 }
 ```
+
+**Only edit your local config and make sure you don't push that config to your production server!**
+
+There are several ways of doing this. I really recommend that you try [Bedrock](https://github.com/roots/bedrock), but
+if you don't, you might want to edit your wp-config.php like described in [this blog post by Mark Jaquith](https://markjaquith.wordpress.com/2011/06/24/wordpress-local-dev-tips/):
+
+```php
+# wp-config.php
+if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
+  include( dirname( __FILE__ ) . '/local-config.php' );
+  define( 'WP_LOCAL_DEV', true );
+} else {
+  define( 'DB_NAME',     'production_db'       );
+  define( 'DB_USER',     'production_user'     );
+  define( 'DB_PASSWORD', 'production_password' );
+  define( 'DB_HOST',     'production_db_host'  );
+}
+```
+
+After that you can add your local configuration, including the database details.
