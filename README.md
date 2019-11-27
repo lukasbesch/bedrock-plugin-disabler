@@ -40,7 +40,7 @@ Config::define('DISABLED_PLUGINS', [
 ]);
 ```
 
-If you have an older Bedrock installations ([< 1.9.0](https://github.com/roots/bedrock/releases/tag/1.9.0)) you have to define the constant using the regular `define()` function:
+If you have an older Bedrock installation ([< 1.9.0](https://github.com/roots/bedrock/releases/tag/1.9.0)) you have to define the constant using the regular `define()` function:
 
 ```php
 if (! defined('DISABLED_PLUGINS')
