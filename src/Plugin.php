@@ -32,22 +32,7 @@ class Plugin
             add_action('admin_notices', [$this, 'noticeIsRegularPlugin']);
         }
 
-        /**
-         * Set disabled plugins.
-         */
-        $this->disabled_plugins = $this->getDisabledPlugins();
-
-        /**
-         * Run the disabler.
-         */
-        $this->disablePlugins();
-
-        /**
-         * Add the disabled notice.
-         */
-        if (! empty($this->disabled_plugins)) {
-            add_action('pre_current_active_plugins', [$this, 'disabledNotice']);
-        }
+        add_action( 'mu_plugins_loaded', [$this, 'disablePlugins']);
     }
 
     /**
@@ -93,15 +78,28 @@ class Plugin
      */
     public function disablePlugins($plugins = null)
     {
-        if ($plugins === null) {
-            $plugins = $this->disabled_plugins;
-        }
-        if (empty($plugins)) {
+        /**
+         * Set disabled plugins.
+         */
+        $this->disabled_plugins = $this->getDisabledPlugins();
+
+        /**
+         * Run the disabler.
+         */
+        if (empty($this->disabled_plugins)) {
             return;
         }
+        
         // Disable the plugins.
         require_once(__DIR__ . '/DisablePlugins.php');
-        new DisablePlugins($plugins);
+        new DisablePlugins($this->disabled_plugins);
+
+        /**
+         * Add the disabled notice.
+         */
+        if (! empty($this->disabled_plugins)) {
+            add_action('pre_current_active_plugins', [$this, 'disabledNotice']);
+        }
     }
 
     /**
