@@ -28,7 +28,7 @@ class Plugin
         /**
          * Check if the plugin is installed as a regular plugin.
          */
-        if (!defined('WPMU_PLUGIN_DIR') || dirname($plugin_file, 2) !== WPMU_PLUGIN_DIR) {
+        if (!defined('WPMU_PLUGIN_DIR') || realpath(dirname($plugin_file, 2)) !== realpath(WPMU_PLUGIN_DIR)) {
             add_action('admin_notices', [$this, 'noticeIsRegularPlugin']);
         }
 
