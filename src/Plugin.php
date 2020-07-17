@@ -32,7 +32,7 @@ class Plugin
             add_action('admin_notices', [$this, 'noticeIsRegularPlugin']);
         }
 
-        add_action( 'mu_plugins_loaded', [$this, 'disablePlugins']);
+        add_action('muplugins_loaded', [$this, 'disablePlugins']);
     }
 
     /**
@@ -89,7 +89,7 @@ class Plugin
         if (empty($this->disabled_plugins)) {
             return;
         }
-        
+
         // Disable the plugins.
         require_once(__DIR__ . '/DisablePlugins.php');
         new DisablePlugins($this->disabled_plugins);
