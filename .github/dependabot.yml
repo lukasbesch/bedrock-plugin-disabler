@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "09:00"
+    timezone: Europe/Berlin
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: composer/installers
+    versions:
+    - 1.10.0
+  - dependency-name: squizlabs/php_codesniffer
+    versions:
+    - 3.5.8
