@@ -1,2 +1,20 @@
-/.gitattributes export-ignore
-/.circleci export-ignore
+# Remove files for archives generated using `git archive` (e.g. when installed as composer package)
+
+## git
+.gitattributes export-ignore
+.gitignore     export-ignore
+
+## ci
+.circleci      export-ignore
+.github        export-ignore
+
+## build config
+.editorconfig  export-ignore
+phpcs.xml      export-ignore
+
+## docs
+CHANGELOG.md   export-ignore
+README.md      export-ignore
+
+## composer files lock file is only needed for ci, and ignored when installed as a package)
+composer.lock  export-ignore
