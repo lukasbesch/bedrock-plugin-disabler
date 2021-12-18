@@ -3,6 +3,15 @@ version: 2.1
 orbs:
   bedrock-plugin-disabler:
     executors:
+      php-81:
+        docker:
+          - image: 'cimg/php:8.1'
+      php-80:
+        docker:
+          - image: 'cimg/php:8.0'
+      php-74:
+        docker:
+          - image: 'cimg/php:7.4'
       php-73:
         docker:
           - image: 'cimg/php:7.3'
@@ -41,6 +50,15 @@ orbs:
 workflows:
   build:
     jobs:
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-81
+          executor: bedrock-plugin-disabler/php-81
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-80
+          executor: bedrock-plugin-disabler/php-80
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-74
+          executor: bedrock-plugin-disabler/php-74
       - bedrock-plugin-disabler/build-php:
           name: build-php-73
           executor: bedrock-plugin-disabler/php-73
