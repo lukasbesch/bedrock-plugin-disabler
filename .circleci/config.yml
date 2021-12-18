@@ -5,19 +5,19 @@ orbs:
     executors:
       php-73:
         docker:
-          - image: 'circleci/php:7.3-stretch'
+          - image: 'cimg/php:7.3'
       php-72:
         docker:
-          - image: 'circleci/php:7.2-stretch'
+          - image: 'cimg/php:7.2'
       php-71:
         docker:
-          - image: 'circleci/php:7.1-stretch'
+          - image: 'cimg/php:7.1'
       php-70:
         docker:
-          - image: 'circleci/php:7.0-stretch'
+          - image: 'cimg/php:7.0'
       php-56:
         docker:
-          - image: 'circleci/php:5.6-stretch'
+          - image: 'cimg/php:5.6'
     jobs:
       build-php:
         parameters:
