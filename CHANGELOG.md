@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.3.1
+- Dependencies: Remove `composer.lock` from repository (no dependencies except `composer/installers`).
+
 #### 1.3.0
 - Dependencies: Support composer 2 (fixes [#14](https://github.com/lukasbesch/bedrock-plugin-disabler/issues/14) – thanks [jacklowrie](https://github.com/jacklowrie))
 
