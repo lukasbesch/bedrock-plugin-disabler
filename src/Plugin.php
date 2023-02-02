@@ -20,25 +20,24 @@ class Plugin
     public function __construct($plugin_file)
     {
         $this->plugin_file = $plugin_file;
-        /**
-         * Prevent plugin to be activated as a regular plugin.
-         */
-        register_activation_hook($plugin_file, [$this, 'preventPluginActivation']);
 
-        /**
-         * Check if the plugin is installed as a regular plugin.
-         */
-        if (!defined('WPMU_PLUGIN_DIR') || realpath(dirname($plugin_file, 2)) !== realpath(WPMU_PLUGIN_DIR)) {
-            add_action('admin_notices', [$this, 'noticeIsRegularPlugin']);
+        $is_mu_plugin = defined('WPMU_PLUGIN_DIR') &&
+                        realpath(WPMU_PLUGIN_DIR) === realpath(dirname($plugin_file, 2));
+        if (! $is_mu_plugin) {
+            // prevent activation as a regular plugin
+            register_activation_hook($plugin_file, [$this, 'preventPluginActivation']);
+            // print notice and deactivate as the plugin is already activated (for whatever reason)
+            add_action('admin_notices', [$this, 'printNoticeAndDeactivate' ]);
         }
 
+        // disable the specified plugins after all other must-use plugins are loaded
         add_action('muplugins_loaded', [$this, 'disablePlugins']);
     }
 
     /**
      * Get the disabled plugins.
      *
-     * @return array|bool|mixed
+     * @return array
      */
     public function getDisabledPlugins()
     {
@@ -49,21 +48,23 @@ class Plugin
     }
 
     /**
-     * If this plugin is activated as a regular plugin.
+     * Prevent plugin to be activated as a regular plugin.
+     * Used as the activation hook.
      */
     public function preventPluginActivation()
     {
         wp_die(
             __('Plugin Disabler only works as a must-use plugin in a bedrock site.', 'plugin-disabler'),
-            'Plugin Disabler',
+            __('Plugin Disabler', 'plugin-disabler'),
             ['back_link' => true]
         );
     }
 
     /**
-     * Inform the user that this plugin works only as a must-use plugin in a bedrock site.
+     * Prints the admin notice that the plugin should be installed
+     * as a must-use plugin and deactivates the plugin itself.
      */
-    public function noticeIsRegularPlugin()
+    public function printNoticeAndDeactivate()
     {
         $class = 'notice notice-error';
         $message = __('Plugin Disabler only works as a must-use plugin in a bedrock site.', 'plugin-disabler');
