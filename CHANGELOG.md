@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.4.0
+- Fix [#15](https://github.com/lukasbesch/bedrock-plugin-disabler/issues/15): Register activation hook only if not installed as mu-plugin. It prevented WP-CLI from running successfully. Thanks [@GiladEhven](https://github.com/GiladEhven) for reporting.
+
 #### 1.3.1
 - Dependencies: Remove `composer.lock` from repository (no dependencies except `composer/installers`).
 

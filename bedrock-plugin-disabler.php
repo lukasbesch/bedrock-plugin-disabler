@@ -3,7 +3,7 @@
 Plugin Name:  Bedrock Plugin Disabler
 Plugin URI:   https://github.com/lukasbesch/bedrock-plugin-disabler/
 Description:  Define an array of plugins that should be deactivated automatically in certain environments.
-Version:      1.3.1
+Version:      1.4.0
 Author:       Lukas Besch, Kamil Grzegorczyk
 Author URI:   https://lukasbesch.com/
 License:      MIT License
