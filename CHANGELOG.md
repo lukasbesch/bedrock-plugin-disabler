@@ -1,5 +1,10 @@
 # Changelog
 
+#### 1.5.0
+- Fix [#16](https://github.com/lukasbesch/bedrock-plugin-disabler/issues/16): Deprecated nullable type syntax. Thanks [@vegetable-bits](https://github.com/vegetable-bits) for the fix.
+- Require PHP 7.1+ (dropped support for PHP 5.6, 7.0)
+- CI: Add PHP 8.2, 8.3, 8.4, 8.5
+
 #### 1.4.0
 - Fix [#15](https://github.com/lukasbesch/bedrock-plugin-disabler/issues/15): Register activation hook only if not installed as mu-plugin. It prevented WP-CLI from running successfully. Thanks [@GiladEhven](https://github.com/GiladEhven) for reporting.
 
