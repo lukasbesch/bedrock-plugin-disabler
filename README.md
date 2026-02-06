@@ -50,7 +50,7 @@ if (! defined('DISABLED_PLUGINS')
 }
 ```
 
-PHP 5.6+ can store arrays in constants, but you can also provide serialized data:
+You can also provide serialized data:
 
 ```php
 Config::define('DISABLED_PLUGINS', serialize([

@@ -3,6 +3,18 @@ version: 2.1
 orbs:
   bedrock-plugin-disabler:
     executors:
+      php-85:
+        docker:
+          - image: 'cimg/php:8.5'
+      php-84:
+        docker:
+          - image: 'cimg/php:8.4'
+      php-83:
+        docker:
+          - image: 'cimg/php:8.3'
+      php-82:
+        docker:
+          - image: 'cimg/php:8.2'
       php-81:
         docker:
           - image: 'cimg/php:8.1'
@@ -18,15 +30,6 @@ orbs:
       php-72:
         docker:
           - image: 'cimg/php:7.2'
-      php-71:
-        docker:
-          - image: 'cimg/php:7.1'
-      php-70:
-        docker:
-          - image: 'cimg/php:7.0'
-      php-56:
-        docker:
-          - image: 'cimg/php:5.6'
     jobs:
       build-php:
         parameters:
@@ -35,21 +38,34 @@ orbs:
         executor: << parameters.executor >>
         steps:
           - run: php -v
+          - run: sudo composer self-update --2
           - checkout
           - restore_cache:
               keys:
-                - composer-v1-{{ checksum "composer.lock" }}
-                - composer-v1-
+                - composer-v2-{{ checksum "composer.json" }}
+                - composer-v2-
           - run: composer install -n --prefer-dist
           - run: composer lint
           - save_cache:
-              key: composer-v1-{{ checksum "composer.lock" }}
+              key: composer-v2-{{ checksum "composer.json" }}
               paths:
                 - vendor
 
 workflows:
   build:
     jobs:
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-85
+          executor: bedrock-plugin-disabler/php-85
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-84
+          executor: bedrock-plugin-disabler/php-84
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-83
+          executor: bedrock-plugin-disabler/php-83
+      - bedrock-plugin-disabler/build-php:
+          name: build-php-82
+          executor: bedrock-plugin-disabler/php-82
       - bedrock-plugin-disabler/build-php:
           name: build-php-81
           executor: bedrock-plugin-disabler/php-81
@@ -65,12 +81,3 @@ workflows:
       - bedrock-plugin-disabler/build-php:
           name: build-php-72
           executor: bedrock-plugin-disabler/php-72
-      - bedrock-plugin-disabler/build-php:
-          name: build-php-71
-          executor: bedrock-plugin-disabler/php-71
-      - bedrock-plugin-disabler/build-php:
-          name: build-php-70
-          executor: bedrock-plugin-disabler/php-70
-      - bedrock-plugin-disabler/build-php:
-          name: build-php-56
-          executor: bedrock-plugin-disabler/php-56
