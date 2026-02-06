@@ -23,10 +23,5 @@
     "scripts": {
       "lint": "phpcs",
       "lint:fix": "phpcbf"
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/installers": true
-        }
     }
 }
