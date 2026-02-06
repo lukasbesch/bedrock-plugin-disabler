@@ -19,7 +19,7 @@ class DisablePlugins
      * Sets up the options filter, and optionally handles an array of plugins to disable
      * @param array $disables Optional array of plugin filenames to disable
      */
-    public function __construct(array $disables = null)
+    public function __construct(?array $disables = null)
     {
         /**
          * Handle what was passed in
